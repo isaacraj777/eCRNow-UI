@@ -69,6 +69,7 @@ class PublicHealthAuthority extends Component {
     }
 
     handleRadioChange(e) {
+        console.log(e.target.value);
         this.setState({
           authType: e.target.value
         });
@@ -282,20 +283,26 @@ class PublicHealthAuthority extends Component {
                                                 </Form.Label>
                                                 <Col sm={10}>
                                                     <Row>
-                                                        <Col sm={4}>
+                                                        <Col sm={3}>
                                                             <Form.Check type="radio" id="providerLaunch">
                                                                 <Form.Check.Input type="radio" checked={this.state.authType === 'SofProvider'} value="SofProvider" name="authType" onChange={e => this.handleRadioChange(e)} />
                                                                 <Form.Check.Label>Provider Launch</Form.Check.Label>
                                                             </Form.Check>
                                                         </Col>
-                                                        <Col sm={4}>
+                                                        <Col sm={3}>
+                                                            <Form.Check type="radio" id="backend">
+                                                                <Form.Check.Input type="radio" checked={this.state.authType === 'SofBackend'} value="SofBackend" name="authType" onChange={e => this.handleRadioChange(e)} />
+                                                                <Form.Check.Label>Backend</Form.Check.Label>
+                                                            </Form.Check>
+                                                        </Col>
+                                                        <Col sm={3}>
                                                             <Form.Check type="radio" id="systemLaunch">
                                                                 <Form.Check.Input type="radio" checked={this.state.authType === 'SofSystem'} value="SofSystem" onChange={e => this.handleRadioChange(e)} />
                                                                 <Form.Check.Label>System Launch</Form.Check.Label>
                                                             </Form.Check>
                                                         </Col>
-                                                        <Col sm={4}>
-                                                            <Form.Check type="radio" id="systemLaunch">
+                                                        <Col sm={3}>
+                                                            <Form.Check type="radio" id="usernamepwd">
                                                                 <Form.Check.Input type="radio" checked={this.state.authType === 'UserNamePwd'} value="UserNamePwd" onChange={e => this.handleRadioChange(e)} />
                                                                 <Form.Check.Label>Username and Password</Form.Check.Label>
                                                             </Form.Check>
@@ -315,7 +322,7 @@ class PublicHealthAuthority extends Component {
                                                 </Col>
                                             </Form.Group>
 
-                                            {this.state.authType !== 'SofProvider' ? (
+                                            {this.state.authType !== 'SofProvider' && this.state.authType !== 'SofBackend' ? (
                                                 <Form.Group as={Row} controlId="formHorizontalClientSecret">
                                                     <Form.Label column sm={2}>
                                                         Client Secret:
